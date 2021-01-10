@@ -1,0 +1,27 @@
+<table class="mt-4 text-center table table-bordered">
+    <thead class=thead-dark>
+        <tr>
+            <th scope="col">{{listHeaders[0]}}</th>
+            <th scope="col">{{listHeaders[1]}}</th>
+            <th scope="col">{{listHeaders[2]}}</th>
+            <th scope="col">{{listHeaders[3]}}</th>
+            <th scope="col">{{listHeaders[4]}}</th>
+            <th scope="col">{{listHeaders[5]}}</th>
+            <th scope="col">{{listHeaders[6]}}</th>
+            <th scope="col">{{listHeaders[7]}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let simulation of simulations">
+            <th scope="row">{{simulation.name}}</th>
+            <td>{{simulation.popSize}}</td>
+            <td>{{simulation.sickNumber}}</td>
+            <td>{{simulation.R}}</td>
+            <td>{{simulation.mortalityRate}}</td>
+            <td>{{simulation.dayUntilRecovery}}</td>
+            <td>{{simulation.dayUntilDead}}</td>
+            <td>{{simulation.simulationDays}}</td>
+            <td><fa-icon [icon]="faBin"></fa-icon></td>
+        </tr>
+    </tbody>
+</table>

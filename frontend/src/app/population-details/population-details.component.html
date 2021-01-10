@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-12 text-center">
+        Dzień {{population.day}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <app-detail-label label="Zarażeni"
+                          color="bg-warning"
+                          [faIcon]="faIcons[0]"
+                          [number]="population.infected">
+        </app-detail-label>
+    </div>
+    <div class="col-6">
+        <app-detail-label label="Osoby zdrowe"
+                          [faIcon]="faIcons[1]"
+                          [number]="population.health">
+        </app-detail-label>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <app-detail-label label="Zmarli"
+                          color="bg-danger"
+                          [faIcon]="faIcons[2]"
+                          [number]="population.death">
+        </app-detail-label>
+    </div>
+    <div class="col-6">
+        <app-detail-label label="Ozdrowieńcy"
+                          color="bg-success"
+                          [faIcon]="faIcons[3]"
+                          [number]="population.recovered">
+        </app-detail-label>
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-12">
+        ------------------------------------------------------------
+    </div>
+</div>
+<div class="row text-center">
+    <div class="col-3 offset-3">
+        <div class="row">
+            <div class="col-12">
+                <button class="bg-danger btn-lg rounded-pill">
+                    <fa-icon [icon]="faIcons[4]">
+                    </fa-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                Poprzedni dzień            
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="row">
+            <div class="col-12">
+                <button class="bg-success btn-lg rounded-pill">
+                    <fa-icon [icon]="faIcons[5]">
+                    </fa-icon>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                Następny dzień            
+            </div>
+        </div>
+    </div>
+</div>

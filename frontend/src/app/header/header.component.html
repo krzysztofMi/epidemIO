@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/">Epidem<b>IO</b> {{name}}</a>
+    <div class="collapse navbar-collapse">
+        <ul *ngIf="isSimulation; else elseBlock" class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Informacje</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Wykresy</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Edycja symulacji</a>
+            </li>
+        </ul>
+        <ng-template #elseBlock>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/simulation">Nowa symulacja</a>
+            </li>
+        </ul>   
+        </ng-template>
+    </div>
+</nav>
