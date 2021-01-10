@@ -1,42 +1,45 @@
-<form class="m-4">
+<form #simulationForm="ngForm" (ngSubmit)="onSubmit()" class="m-4">
     <div class="form-row">
         <div class="col-md-6">
             <label>Nazwa symulacji</label>
-            <input type="text" class="form-control">
+            <input type="text" name="name" [(ngModel)]="simulation.name" class="form-control">
         </div>    
         <div class="col-md-6">
             <label>Wskaźnik śmiertelności</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="mortalityRate" min="0" [(ngModel)]="simulation.mortalityRate" class="form-control">
         </div>    
     </div>
     <div class="form-row">
         <div class="col-md-6">
             <label>Wielkość populacji</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="populationSize" min="0" [(ngModel)]="simulation.populationSize" class="form-control">
         </div>    
         <div class="col-md-6">
             <label>Ilość dni do wyzdrowienia</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="dayUntilRecovery" min="0" [(ngModel)]="simulation.dayUntilRecovery" class="form-control">
         </div>    
     </div>
     <div class="form-row">
         <div class="col-md-6">
             <label>Początkowa liczba chorych</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="infected" min="0" [(ngModel)]="simulation.infected" class="form-control">
         </div>    
         <div class="col-md-6">
             <label>Ilość dni do śmierci</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="dayUntilDeath" min="0" [(ngModel)]="simulation.dayUntilDeath" class="form-control">
         </div>    
     </div>
     <div class="form-row">
         <div class="col-md-6">
             <label>Zarażeni przez jedną osobę</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="infectionRate" [(ngModel)]="simulation.infectionRate" min="0" class="form-control">
         </div>    
         <div class="col-md-6">
             <label>Czas symulacji w dniach</label>
-            <input type="number" min="0" class="form-control">
+            <input type="number" name="simulationDays" min="0" [(ngModel)]="simulation.simulationDays" class="form-control">
         </div>    
+    </div>
+    <div class="col-12 text-center mt-4">
+        <button type="submit" class="btn btn-primary">Zapisz symulację</button>
     </div>
 </form>

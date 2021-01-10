@@ -12,15 +12,15 @@ import javax.persistence.*;
 public class Simulation {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private Integer populationSize;
     private Integer infected;
     private Integer infectionRate;
-    private Integer mortalityRate;
-    private Integer dayUntilDeath;
+    private Float mortalityRate;
     private Integer dayUntilRecovery;
-    private Integer dayNumber;
+    private Integer dayUntilDeath;
+    private Integer simulationDays;
 
 }

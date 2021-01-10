@@ -7,7 +7,7 @@ import { SimulationListComponent } from './simulation-list/simulation-list.compo
 const routes: Routes = [
   {path: 'simulations', component: SimulationListComponent},
   {path: 'simulation', component: SimulationFormComponent},
-  {path: 'details', component: SimulationDetailsComponent},
+  {path: 'simulation/:id', component: SimulationDetailsComponent},
   {path: '', redirectTo: '/simulations', pathMatch: 'prefix'},
   {path: "**", component: PageNotFoundComponent}
 ];

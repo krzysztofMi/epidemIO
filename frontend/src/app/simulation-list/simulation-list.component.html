@@ -12,16 +12,19 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let simulation of simulations">
-            <th scope="row">{{simulation.name}}</th>
-            <td>{{simulation.popSize}}</td>
-            <td>{{simulation.sickNumber}}</td>
-            <td>{{simulation.R}}</td>
-            <td>{{simulation.mortalityRate}}</td>
-            <td>{{simulation.dayUntilRecovery}}</td>
-            <td>{{simulation.dayUntilDead}}</td>
-            <td>{{simulation.simulationDays}}</td>
-            <td><fa-icon [icon]="faBin"></fa-icon></td>
+        <tr (mouseenter)="changeRow($event)" (mouseleave)="changeRow($event)" *ngFor="let simulation of simulations">
+            <th (click)="toDetails(simulation)" scope="row">{{simulation.name}}</th>
+            <td (click)="toDetails(simulation)">{{simulation.populationSize}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.infected}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.infectionRate}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.mortalityRate}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.dayUntilRecovery}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.dayUntilDeath}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.simulationDays}}</td>
+            <td class="bin" (mouseenter)="changeBin($event)" (mouseleave)="changeBin($event)" (click)="delete(simulation)"><fa-icon [icon]="faBin"></fa-icon></td>
         </tr>
     </tbody>
 </table>
+<div class="col-12 text-center">
+    <button (click)="newSimulation()" class="btn btn-success rounded-circle mb-2 pb-2">+</button>
+</div>

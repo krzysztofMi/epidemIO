@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS simulation (
     infected INT,
     infection_rate INT,
     mortality_rate FLOAT,
-    day_until_death INT,
     day_until_recovery INT,
-    day_number INT
+    day_until_death INT,
+    simulation_days INT
 );
