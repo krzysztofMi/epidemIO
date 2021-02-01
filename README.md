@@ -1,4 +1,6 @@
 # epidemIO
 
-Backend: Java with Spring framework
-Frontend: Angular
+  Backend: Java with Spring framework
+  <br/>
+  Frontend: Angular
+
