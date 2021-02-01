@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from '../navbar.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   public name: string = ""
-  public isSimulation: boolean = false;
+
+  constructor(public navbarService: NavbarService) { 
   
-  constructor() { }
+  }
 
   ngOnInit(): void {
   }

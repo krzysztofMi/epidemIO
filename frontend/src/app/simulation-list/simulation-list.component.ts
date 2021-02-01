@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons'
+import { logging } from 'protractor';
 import { Simulation } from '../simulation-element/simulation';
 import { SimulationService } from '../simulation.service';
 
@@ -36,8 +37,9 @@ export class SimulationListComponent implements OnInit {
   }
 
   delete(item: Simulation) {
-    this.simulationService.delete(item.id).subscribe( data => 
-      this.simulations.splice(item.id-1, 1)
+    this.simulationService.delete(item.id).subscribe( data => {
+      this.simulations = this.simulations.filter(obj=>obj.id != item.id)
+    }
     )
   }
 

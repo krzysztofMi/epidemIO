@@ -1,10 +1,13 @@
 package epidem.io.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.Cascade;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,12 +18,16 @@ public class Simulation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Integer populationSize;
-    private Integer infected;
+    private Long populationSize;
+    private Long infected;
     private Integer infectionRate;
     private Float mortalityRate;
-    private Integer dayUntilRecovery;
-    private Integer dayUntilDeath;
+    private Integer daysUntilRecovery;
+    private Integer daysUntilDeath;
     private Integer simulationDays;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "simulation")
+    List<Population> populations = new ArrayList<>();
 
 }

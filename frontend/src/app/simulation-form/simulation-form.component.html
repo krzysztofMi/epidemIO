@@ -1,45 +1,125 @@
-<form #simulationForm="ngForm" (ngSubmit)="onSubmit()" class="m-4">
-    <div class="form-row">
+<form [formGroup]="simulationForm" class="form-group" (ngSubmit)="onSubmit()" class="m-4">
+    <div class="form-row text-center">
         <div class="col-md-6">
-            <label>Nazwa symulacji</label>
-            <input type="text" name="name" [(ngModel)]="simulation.name" class="form-control">
+            <div>
+                <label>Nazwa symulacji</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="name.invalid && name.touched"
+                type="text" formControlName="name" class="form-control">
+            </div>
+            <div *ngIf="name.invalid && name.touched">
+                <small *ngIf="name.errors?.required" class="text-danger">Nazwa jest wymagana</small>
+                <small  *ngIf="name.errors?.maxlength" class="text-danger">Nazwa jest za długa</small>
+            </div>
         </div>    
-        <div class="col-md-6">
-            <label>Wskaźnik śmiertelności</label>
-            <input type="number" name="mortalityRate" min="0" [(ngModel)]="simulation.mortalityRate" class="form-control">
+        <div class="col-md-6 ">
+            <div>
+                <label>Wskaźnik śmiertelności</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="mortalityRate.invalid && mortalityRate.touched"
+                type="number" formControlName="mortalityRate" class="form-control">
+            </div>
+            <div *ngIf="mortalityRate.invalid && mortalityRate.touched">
+                <small *ngIf="mortalityRate.errors?.required" class="text-danger">Wskaźnik śmiertelności nie może być pusty</small>
+                <small  *ngIf="mortalityRate.errors?.min" class="text-danger">Wskaźnik musi myć większy lub równy 0</small>
+                <small  *ngIf="mortalityRate.errors?.max" class="text-danger">Wskaźnik musi być mniejszy lub równy 1</small>
+            </div>
         </div>    
     </div>
-    <div class="form-row">
+    <div class="form-row text-center">
         <div class="col-md-6">
-            <label>Wielkość populacji</label>
-            <input type="number" name="populationSize" min="0" [(ngModel)]="simulation.populationSize" class="form-control">
+            <div>
+                <label>Wielkość populacji</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="populationSize.invalid && populationSize.touched || simulationForm.errors?.populationLessThanInfected"
+                type="number" formControlName="populationSize" class="form-control">
+            </div>
+            <div *ngIf="populationSize.invalid && populationSize.touched">
+                <small *ngIf="populationSize.errors?.required" class="text-danger">Wielkość populacji jest wymagana</small>
+                <small *ngIf="populationSize.errors?.min" class="text-danger">Wielkość populacji musi myć większa lub równa 0</small>
+            </div>
+            <small *ngIf="simulationForm.errors?.populationLessThanInfected" class="text-danger">Wielkość populacji musi być większa niż liczba zainfekowanych</small>
         </div>    
         <div class="col-md-6">
-            <label>Ilość dni do wyzdrowienia</label>
-            <input type="number" name="dayUntilRecovery" min="0" [(ngModel)]="simulation.dayUntilRecovery" class="form-control">
+            <div col-md-12>
+                <label>Ilość dni do wyzdrowienia</label>
+            </div>
+            <div col-md-12>
+                <input [class.is-invalid]="daysUntilRecovery.invalid && daysUntilRecovery.touched"
+                type="number" formControlName="daysUntilRecovery" class="form-control">
+            </div>
+            <div *ngIf="daysUntilRecovery.invalid && daysUntilRecovery.touched">
+                <small *ngIf="daysUntilRecovery.errors?.required" class="text-danger">Ilość dni nie może być pusta</small>
+                <small *ngIf="daysUntilRecovery.errors?.min" class="text-danger">Ilość dni musi myć większa lub równa 0</small>
+            </div>
         </div>    
     </div>
-    <div class="form-row">
+    <div class="form-row text-center">
         <div class="col-md-6">
-            <label>Początkowa liczba chorych</label>
-            <input type="number" name="infected" min="0" [(ngModel)]="simulation.infected" class="form-control">
+            <div>
+                <label>Początkowa liczba chorych</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="infected.invalid && infected.touched"
+                type="number" formControlName="infected" class="form-control">
+            </div>
+            <div *ngIf="infected.invalid && infected.touched || simulationForm.errors?.populationLessThanInfected">
+                <small *ngIf="infected.errors?.required" class="text-danger">Początkowa liczba chorych jest wymagana</small>
+                <small *ngIf="infected.errors?.min" class="text-danger">Początkowa liczba chorych musi myć większa lub równa 0</small>
+            </div>
+            <small *ngIf="simulationForm.errors?.populationLessThanInfected" class="text-danger">Początkowa liczba chorych musi być mniejsza niż wielkość populacji</small>
         </div>    
         <div class="col-md-6">
-            <label>Ilość dni do śmierci</label>
-            <input type="number" name="dayUntilDeath" min="0" [(ngModel)]="simulation.dayUntilDeath" class="form-control">
+            <div>
+                <label>Ilość dni do śmierci</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="daysUntilDeath.invalid && daysUntilDeath.touched"
+                type="number" formControlName="daysUntilDeath" class="form-control">
+            </div>
+            <div *ngIf="daysUntilDeath.invalid && daysUntilDeath.touched">
+                <small *ngIf="daysUntilDeath.errors?.required" class="text-danger">Ilość dni nie może być pusta</small>
+                <small *ngIf="daysUntilDeath.errors?.min" class="text-danger">Ilość dni musi myć większa lub równa 0</small>
+            </div>
         </div>    
     </div>
-    <div class="form-row">
+    <div class="form-row text-center">
         <div class="col-md-6">
-            <label>Zarażeni przez jedną osobę</label>
-            <input type="number" name="infectionRate" [(ngModel)]="simulation.infectionRate" min="0" class="form-control">
+            <div>
+                <label>Zarażeni przez jedną osobę</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="infectionRate.invalid && infectionRate.touched"
+                 type="number" formControlName="infectionRate" class="form-control">
+            </div>
+            <div *ngIf="infectionRate.invalid && infectionRate.touched">
+                <small *ngIf="infectionRate.errors?.required" class="text-danger">Wskaźnik zarażonych nie może być pusty</small>
+                <small *ngIf="infectionRate.errors?.min" class="text-danger">Wskaźnik zarażonych musi myć większa lub równa 0</small>
+            </div>
         </div>    
         <div class="col-md-6">
-            <label>Czas symulacji w dniach</label>
-            <input type="number" name="simulationDays" min="0" [(ngModel)]="simulation.simulationDays" class="form-control">
+            <div>
+                <label>Czas symulacji w dniach</label>
+            </div>
+            <div>
+                <input [class.is-invalid]="simulationDays.invalid &&
+                simulationDays.touched"
+                type="number" formControlName="simulationDays" class="form-control">
+            </div>
+            <div *ngIf="simulationDays.invalid && simulationDays.touched">
+                <small *ngIf="simulationDays.errors?.required" class="text-danger">Ilość dni nie może być pusta</small>
+                <small *ngIf="simulationDays.errors?.min" class="text-danger">Ilość dni musi być większa lub równa 0</small>
+            </div>
         </div>    
     </div>
     <div class="col-12 text-center mt-4">
-        <button type="submit" class="btn btn-primary">Zapisz symulację</button>
+        <button 
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!simulationForm.valid">Zapisz symulację
+        </button>
     </div>
 </form>

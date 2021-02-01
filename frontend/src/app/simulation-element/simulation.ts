@@ -3,11 +3,11 @@ import { Identifiers } from "@angular/compiler";
 export interface Simulation {
     id: number
     name: string
-    populationSize: number
-    infected: number
-    infectionRate: number
-    mortalityRate: number
-    dayUntilRecovery: number
-    dayUntilDeath: number
-    simulationDays: number
+    populationSize: string
+    infected: string
+    infectionRate: string
+    mortalityRate: string
+    daysUntilRecovery: string
+    daysUntilDeath: string
+    simulationDays: string
 }

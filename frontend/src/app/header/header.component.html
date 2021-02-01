@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Epidem<b>IO</b> {{name}}</a>
     <div class="collapse navbar-collapse">
-        <ul *ngIf="isSimulation; else elseBlock" class="navbar-nav mr-auto">
+        <ul *ngIf="navbarService.isSimulation; else elseBlock" class="navbar-nav mr-auto">
             <li class="nav-item">
                 <a class="nav-link" href="#">Informacje</a>
             </li>
@@ -9,7 +9,7 @@
                 <a class="nav-link" href="#">Wykresy</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Edycja symulacji</a>
+                <a class="nav-link" href="/simulation/{{navbarService.simulationId}}/edit">Edycja symulacji</a>
             </li>
         </ul>
         <ng-template #elseBlock>

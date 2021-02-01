@@ -6,7 +6,7 @@ import { faSquare } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./detail-label.component.css']
 })
 export class DetailLabelComponent implements OnInit {
-  @Input() number: Number = 0
+  @Input() number: String = ""
   @Input() label: String = ""
   @Input() faIcon = faSquare
   @Input() color = "bg-info" 

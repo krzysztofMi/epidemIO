@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -15,7 +15,10 @@ import { DetailLabelComponent } from './detail-label/detail-label.component';
 import { ChartComponent } from './chart/chart.component';
 import { PopulationDetailsComponent } from './population-details/population-details.component';
 import { SimulationService } from './simulation.service';
-
+import { PopulationService } from './population.service';
+import { NavbarService } from './navbar.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSliderModule } from '@angular/material/slider';
 
 @NgModule({
   declarations: [
@@ -32,12 +35,14 @@ import { SimulationService } from './simulation.service';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     FontAwesomeModule,
-    ChartsModule
+    ChartsModule,
+    BrowserAnimationsModule,
+    MatSliderModule
   ],
-  providers: [SimulationService],
+  providers: [SimulationService, PopulationService, NavbarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

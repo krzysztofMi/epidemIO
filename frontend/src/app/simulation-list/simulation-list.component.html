@@ -18,8 +18,8 @@
             <td (click)="toDetails(simulation)">{{simulation.infected}}</td>
             <td (click)="toDetails(simulation)">{{simulation.infectionRate}}</td>
             <td (click)="toDetails(simulation)">{{simulation.mortalityRate}}</td>
-            <td (click)="toDetails(simulation)">{{simulation.dayUntilRecovery}}</td>
-            <td (click)="toDetails(simulation)">{{simulation.dayUntilDeath}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.daysUntilRecovery}}</td>
+            <td (click)="toDetails(simulation)">{{simulation.daysUntilDeath}}</td>
             <td (click)="toDetails(simulation)">{{simulation.simulationDays}}</td>
             <td class="bin" (mouseenter)="changeBin($event)" (mouseleave)="changeBin($event)" (click)="delete(simulation)"><fa-icon [icon]="faBin"></fa-icon></td>
         </tr>

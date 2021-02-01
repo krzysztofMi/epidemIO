@@ -1,7 +1,6 @@
 export interface Population {
-    infected: number
-    health: number
-    death: number
-    recovered: number
-    day: number
+    infected: string,
+    healthy: string,
+    death: string,
+    recovered: string
 }

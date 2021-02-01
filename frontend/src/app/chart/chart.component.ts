@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ChartType } from 'chart.js'
+import { Label } from 'ng2-charts';
+import { PopulationService } from '../population.service';
+import { SimulationService } from '../simulation.service';
+import { ChartData } from './chart-data';
+
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -12,18 +18,48 @@ export class ChartComponent implements OnInit {
     responsive: true
   }
 
-  public chartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012']
+  private simulationId: number = 0
+  public chartLabels: Label[]  = []
   public chartType: ChartType = 'line'
   public chartLegend = true
 
-  public chartData = [
-    {data: [12, 59, 31, 80, 32, 95, 100], label: 'Series A'},
-    {data: [10, 20, 30, 25, 30, 80, 10], label: 'Series B'},
-  ]
+  public chartData: any= []
 
-  constructor() { }
+  constructor(
+    private populationService: PopulationService,
+    private simulationService: SimulationService,
+    private route: ActivatedRoute) { 
+    let id = route.snapshot.paramMap.get("id")
+    if(id) {
+      this.simulationId = parseInt(id)
+    }
+  }
 
   ngOnInit(): void {
+    this.simulationService.get(this.simulationId).subscribe(
+      data=>{this.chartLabels = Array
+        .from(Array(data.simulationDays).keys())
+        .map(it=>it.toString())
+      }
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.Active).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Aktywne przypadki"})
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.All).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Wszystkie przypadki"})
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.Death).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Liczba zgonów"})
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.Recovered).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Ozdrowieńcy"})
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.Recovered).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Ozdrowieńcy"})
+    )
+    this.populationService.getChartData(this.simulationId, ChartData.Health).subscribe(
+      data=>this.chartData.push({"data": data, 'label': "Zdrowi"})
+    )
   }
 
 }

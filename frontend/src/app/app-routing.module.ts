@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'simulations', component: SimulationListComponent},
   {path: 'simulation', component: SimulationFormComponent},
   {path: 'simulation/:id', component: SimulationDetailsComponent},
+  {path: 'simulation/:id/edit', component: SimulationFormComponent},
   {path: '', redirectTo: '/simulations', pathMatch: 'prefix'},
   {path: "**", component: PageNotFoundComponent}
 ];
