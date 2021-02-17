@@ -1,3 +1,4 @@
+import { R3TargetBinder } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ChartType } from 'chart.js'
@@ -21,7 +22,6 @@ export class ChartComponent implements OnInit {
   private simulationId: number = 0
   public chartLabels: Label[]  = []
   public chartType: ChartType = 'line'
-  public chartLegend = true
 
   public chartData: any= []
 
@@ -43,22 +43,24 @@ export class ChartComponent implements OnInit {
       }
     )
     this.populationService.getChartData(this.simulationId, ChartData.Active).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Aktywne przypadki"})
+      data=>this.chartData.push({"data": data, 'label': "Aktywne przypadki",
+        "backgroundColor": "rgba(255,255,10,0.5)"})
     )
     this.populationService.getChartData(this.simulationId, ChartData.All).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Wszystkie przypadki"})
+      data=>this.chartData.push({"data": data, 'label': "Wszystkie przypadki",
+      "backgroundColor": "rgba(0,255,255,0.5)"})
     )
     this.populationService.getChartData(this.simulationId, ChartData.Death).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Liczba zgonów"})
+      data=>this.chartData.push({"data": data, 'label': "Liczba zgonów",
+       "backgroundColor": "rgba(0,0,0,0.8)"})
     )
     this.populationService.getChartData(this.simulationId, ChartData.Recovered).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Ozdrowieńcy"})
-    )
-    this.populationService.getChartData(this.simulationId, ChartData.Recovered).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Ozdrowieńcy"})
+      data=>this.chartData.push({"data": data, 'label': "Ozdrowieńcy", 
+      "backgroundColor": "rgba(0,255,0,0.5)"})
     )
     this.populationService.getChartData(this.simulationId, ChartData.Health).subscribe(
-      data=>this.chartData.push({"data": data, 'label': "Zdrowi"})
+      data=>this.chartData.push({"data": data, 'label': "Zdrowi", 
+      "backgroundColor": "rgba(0,0,240,0.5)"})
     )
   }
 
